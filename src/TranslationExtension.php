@@ -23,7 +23,7 @@ class TranslationExtension extends \Twig_Extension
     return array(
       new \Twig_SimpleFunction('translate', array($this, 'translate')),
       new \Twig_SimpleFunction('_', array($this, 'translate')),
-	  new \Twig_SimpleFunction('trans', array($this, 'translate')),
+	  new \Twig_SimpleFunction('trans', array($this, 'transB')),
 	  new \Twig_SimpleFunction('trans_choice', [$this, 'transChoice'])
     );
   }
@@ -51,5 +51,18 @@ class TranslationExtension extends \Twig_Extension
     }    
 	  
     return $app->translator->transChoice($id, $number, $parameters, $domain, $locale);
+  }
+  
+  public function transB($id, array $parameters = [], $domain = 'messages', $locale = null)
+  {
+	  global $app;
+	  if (!$app->translator) {
+      throw new \Exception('No translator class found.');
+    }
+	if (!method_exists($app->translator, 'trans')) {
+      throw new \Exception('No translate method found in translator class.');
+    }   
+	
+    return $app->translator->trans($id, $parameters, $domain, $locale);
   }
 }

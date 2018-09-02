@@ -1,6 +1,6 @@
 {
   "name": "coign/twig-translation",
-  "description": "Twig function for Illuminate\\Translation\\Translator in Slim framework",
+  "description": "Twig function para Illuminate\\Translation\\Translator em Slim framework",
   "keywords": ["microframework", "slim", "twig", "illuminate", "translation"],
   "homepage": "https://github.com/dimaxes/Twig-Translation",
   "license": "MIT",

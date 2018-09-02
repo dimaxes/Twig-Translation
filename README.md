@@ -90,8 +90,10 @@ return array(
 ```
 
 # Usando no template
-Para usar no seu template, você téria que invocar primeiro o nome do arquivo de diretório no nosso caso ```home.php``` e depois a chave do array que desejamos chamar..
-invocariamos da seguinte forma ```home.welcome
+Para usar no seu template, você téria que invocar primeiro o nome do arquivo de diretório no nosso caso 
+```home.php``` 
+e depois a chave do array que desejamos chamar..
+invocariamos da seguinte forma ```home.welcome```
 ```
 {{ translate('home.Welcome') }}
 ```
@@ -101,7 +103,7 @@ Você pode usar com abreviação..
 ```
 Ou como no exemplo abaixo, temos uma array para dar as boas vindas e mostrar o nome do usuário..
 ```/pt/messages.php```
-```
+```php
 return array(
 	'hello' => 'Olá :name!'
 );

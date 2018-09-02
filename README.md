@@ -9,24 +9,11 @@ fornecendo uma classe de extensão dee ramificação para analizar. Então a cla
 
 Abra o prompt de comando na pasta da aplicação e cole:
 ```
-composer require coign/twig-translation-extension
+composer require coign/twig-translation
 ```
-    
-```json
-{
-    "require": {
-        "dkesberg/slim-twig-translation-extension": "dev-master"
-    }
-}
-```
+  
 
-Then run the following composer command:
-
-```bash
-$ php composer.phar install
-```
-
-## How to use
+## Como Usar
 
 ### Slim
 

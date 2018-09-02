@@ -75,59 +75,40 @@ Lembre-se se que cada pasta é um idioma..
                   /home.php
                   /about.php
 ```
-
-
+Aonde em cada arquivo de tradução por sua vez terá uma array com as traduções
+/en/home.php
 ```php
-$view->parserExtensions = array(
-    new \Dkesberg\Slim\Twig\Extension\TranslationExtension(),
+return array(
+'Welcome' => 'Hello'
+); 
+```
+/pt/home.php
+```php
+return array(
+'Welcome' => 'Olá'
+); 
+```
+
+# Usando no template
+Para usar no seu template, você téria que invocar primeiro o nome do arquivo de diretório no nosso caso ```home.php``` e depois a chave do array que desejamos chamar..
+invocariamos da seguinte forma ```home.welcome
+```
+{{ translate('home.Welcome') }}
+```
+Você pode usar com abreviação..
+```
+{{ _('home.welcome') }}
+```
+Ou como no exemplo abaixo, temos uma array para dar as boas vindas e mostrar o nome do usuário..
+```/pt/messages.php```
+```
+return array(
+	'hello' => 'Olá :name!'
 );
 ```
-
-### Twig template
-
-In your twig template you would write:
-
+Nesse exemplo acima , teriamos que usar a invocação no template assim..
 ```
-  {{ translate('male') }}
-```
-  
-You can also use the shorthand:
-
-```
-  {{ _('male') }}
+{{ trans('messages.hello', {'name': 'João Doe'}) }}
 ```
 
-### Adding Illuminate/Translation/Translator to slim
-
-Simple injection:
-
-```php
-use Illuminate\Translation\Translator;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Translation\FileLoader;
-
-$translator = new Translator(new FileLoader(new Filesystem(), __DIR__ . '/lang'), 'en');
-$translator->setFallback('en');
-$app->translator = $translator;
-```
-
-Using slim hooks:
-
-```php
-use Illuminate\Translation\Translator;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Translation\FileLoader;
-
-// detect language and set translator
-$app->hook('slim.before', function () use ($app) {
-  $env = $app->environment();
-  
-  $locale = Locale::acceptFromHttp($env['HTTP_ACCEPT_LANGUAGE']);
-  $locale = substr($locale,0,2);
-
-  // Set translator instance
-  $translator = new Translator(new FileLoader(new Filesystem(), __DIR__ . '/lang'), 'en');
-  $translator->setFallback('en');
-  $app->translator = $translator;
-});
-```
+Adicione novas pastas para diferentes idiomas.
